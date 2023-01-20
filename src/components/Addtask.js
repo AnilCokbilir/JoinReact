@@ -57,7 +57,7 @@ function Addtask() {
   const ShowAssignes = () => {
     return (
       <div className="dropdown border-gray-300 rounded-b-lg border-2 border-solid pl-1 border-t-0">
-        {assignees.map((assignee, index) => (
+        {selectedAssignees.map((assignee, index) => (
           <div key={index}>
             <label className="flex justify-between">
               {assignee.username}{" "}

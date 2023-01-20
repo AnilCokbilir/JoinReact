@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Addtask from './components/Addtask';
 function App() {
   return (
     <div className="App">
-      <h1 className='flex'>Hello World</h1>
+      <Addtask/>
     </div>
   );
 }

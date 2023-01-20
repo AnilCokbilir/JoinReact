@@ -7,18 +7,20 @@ function Addtask() {
     {
       username: "Mustafa",
       checked: false,
+      id: "a1",
     },
     {
       username: "Anil",
       checked: false,
+      id: "a2",
     },
   ];
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Development");
-  const [selectedAssignees, setSelectedAssignees] = useState([]);
   const [dropdown, setDropdown] = useState(false);
+  const [selectedAssignees, setSelectedAssignees] = useState(assignees);
 
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
@@ -36,19 +38,19 @@ function Addtask() {
     setDropdown((prevState) => !prevState);
   };
 
-  const selectUserHandler = (index) => {
-    console.log(index);
-    if(assignees[index].checked){
-        assignees[index].checked = false;
-        
-    }else{
-        assignees[index].checked = true;
-    }
-    // setSelectedAssignees(assignees[index].checked)
-    // console.log(assignees)
+  const selectUserHandler = (id) => {
+    const prevAssignees = [...selectedAssignees];
+    // console.log(prevAssignees);
 
-    setSelectedAssignees(prevAssignee => ({...prevAssignee, checked: true}));
-  }
+
+    setSelectedAssignees(
+      prevAssignees.map((assignee) =>
+        assignee.id === id
+          ? { ...assignee, checked: !assignee.checked }
+          : assignee
+      )
+    );
+  };
 
   console.log(selectedAssignees);
 
@@ -57,8 +59,16 @@ function Addtask() {
       <div className="dropdown border-gray-300 rounded-b-lg border-2 border-solid pl-1 border-t-0">
         {assignees.map((assignee, index) => (
           <div key={index}>
-            <label  onClick={() => {selectUserHandler(index)}}  className="flex justify-between">
-              {assignee.username} <input type="checkbox" className="mr-1" />
+            <label className="flex justify-between">
+              {assignee.username}{" "}
+              <input
+                onChange={() => {
+                  selectUserHandler(assignee.id);
+                }}
+                checked={assignee.checked}
+                type="checkbox"
+                className="mr-1"
+              />
             </label>
           </div>
         ))}

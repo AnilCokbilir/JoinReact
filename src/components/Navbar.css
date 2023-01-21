@@ -1,0 +1,12 @@
+.joinlogo {
+    width: 100px;
+    height: 120px;
+}
+
+.bg-Color {
+    background-color: #2A3647;
+}
+
+a:hover {
+    background-color: #091931;
+}
